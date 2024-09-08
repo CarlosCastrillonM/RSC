@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.*;
+import javax.swing.colorchooser.ColorSelectionModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -29,6 +30,9 @@ public class FormOferta extends JFrame {
         JButton button;
         button = new RoundedButtonAgregar("+", 100);
 
+        button.setBackground(new Color(21, 21, 220));
+        button.setForeground(new Color(255, 255, 255));
+
         button.setBounds(450, 800, 50, 50);
         absolute.add(button);
 
@@ -37,7 +41,13 @@ public class FormOferta extends JFrame {
             panelPr.setLayout(new BorderLayout());
             panelPr.add(new JLabel("Hello world"));
             panelPr.setBackground(i % 2 == 0 ? Color.BLUE : Color.PINK);
-            panelPr.setPreferredSize(new Dimension(100, 100));
+            //panelPr.setPreferredSize(new Dimension(100, 125));
+
+            Dimension fixedSize = new Dimension(100, 125);
+            panelPr.setPreferredSize(fixedSize);
+            panelPr.setMinimumSize(fixedSize);
+            panelPr.setMaximumSize(fixedSize);
+
             panelOferta.add(panelPr);
             panelOferta.revalidate();
             panelOferta.repaint();
@@ -65,26 +75,44 @@ public class FormOferta extends JFrame {
 }
 
 class RoundedButtonAgregar extends JButton {
-    private int radius;
+    private final int radius;
 
     public RoundedButtonAgregar(String text, int radius) {
         super(text);
         this.radius = radius;
         setContentAreaFilled(false); // Evita el fondo por defecto
+        setFocusPainted(false); // Evita el borde de enfoque al hacer clic
+        setOpaque(false); // Hace el botón no opaco para evitar problemas de fondo
+        setBorderPainted(false); // Evita que el botón pinte su propio borde
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
-        g2.setColor(getBackground());
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius); // Fondo redondeado
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        // Dibuja el fondo redondeado del botón
+        if (getModel().isPressed()) {
+            g2.setColor(getBackground().darker()); // Cambia el color al hacer clic
+        } else if (getModel().isRollover()) {
+            g2.setColor(getBackground().brighter()); // Cambia el color al pasar el mouse
+        } else {
+            g2.setColor(getBackground());
+        }
+
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
+
+        // Ajuste de opacidad para asegurar que solo se dibuje el texto sin fondo
+        g2.setComposite(AlphaComposite.SrcOver);
         super.paintComponent(g2);
+
         g2.dispose();
     }
 
     @Override
     protected void paintBorder(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(getForeground());
         g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radius, radius); // Borde redondeado
         g2.dispose();
