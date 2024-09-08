@@ -37,6 +37,15 @@ public class FormOferta extends JFrame {
         absolute.add(button);
 
         button.addActionListener(e -> {
+
+            Boolean isActivo = false;
+
+            var formNuevaO = new FormNuevaOferta(this);
+            formNuevaO.setVisible(true);
+            this.dispose();
+
+
+
             var panelPr = new JPanel();
             panelPr.setLayout(new BorderLayout());
             panelPr.add(new JLabel("Hello world"));

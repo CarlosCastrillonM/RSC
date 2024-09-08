@@ -6,14 +6,29 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class FormNuevaOferta extends JFrame {
 
     private JComboBox<String> tipoVehiculo;
     private JTextField marcaField, capacidadField, fechaField, horarioField, destinoField;
     private JButton btnCrear;
+    private FormOferta formOferta;
 
-    public FormNuevaOferta() {
+    public FormNuevaOferta(FormOferta formOferta) {
+
+        this.formOferta = formOferta;
+
+        // Agregar un WindowListener para detectar cuando se cierra el Formulario2
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Mostrar el Formulario1 cuando se cierra el Formulario2
+                formOferta.setVisible(true);
+            }
+        });
+
         // Configuración de la ventana
         setResizable(false);
         setTitle("Agregar nueva oferta");
@@ -24,6 +39,8 @@ public class FormNuevaOferta extends JFrame {
         JPanel c = new JPanel();
         c.setLayout(new BoxLayout(c, BoxLayout.Y_AXIS));
         c.setBorder(new EmptyBorder(30, 30, 300, 30));
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         // Título
         var contTitulo = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
@@ -110,13 +127,14 @@ public class FormNuevaOferta extends JFrame {
                         "Destino: " + destino);
             }
         });
+
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new FormNuevaOferta().setVisible(true);
+                new FormNuevaOferta(new FormOferta()).setVisible(true);
             }
         });
     }
