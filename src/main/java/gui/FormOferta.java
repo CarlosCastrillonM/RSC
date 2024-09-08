@@ -11,6 +11,9 @@ public class FormOferta extends JFrame{
     private JButton btnAgregarOf;
     private JScrollPane scrollPMain;
     private JPanel panelOferta;
+    private JPanel panelPr1;
+    private JPanel panelPr2;
+
 
     public FormOferta(){
         btnAgregarOf.addActionListener(new ActionListener() {
@@ -25,12 +28,20 @@ public class FormOferta extends JFrame{
         this.setTitle("Ofertas");
         this.setVisible(true);
         this.setBounds(700, 100, 600, 900);
+        this.setBackground(Color.BLACK);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        panelOferta.setBounds(0, 0, 580, 100);
+        panelOferta.setLayout(null);
+        panelOferta.setBounds(0, 0, 580, 200);
         panelOferta.setBackground(Color.cyan);
+
+        panelPr1.setBackground(Color.red);
+        panelPr1.setBounds(0, 0, 580, 100);
+
+        panelPr2.setBackground(Color.green);
+        panelPr2.setBounds(0, 110, 580, 100);
+
 
 
     }
-
 }
