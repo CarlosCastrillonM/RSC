@@ -1,8 +1,6 @@
-package util;
-
 import java.sql.*;
 import java.util.Properties;
-import gui.FormOferta;
+
 import org.rsc.Main;
 
 public class RSC {
