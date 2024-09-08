@@ -45,11 +45,11 @@ public class FormNuevaOferta extends JFrame {
         infoVehiculo.add(tipoVehiculo);
 
         infoVehiculo.add(new CustomText("Marca:"));
-        marcaField = new JTextField();
+        marcaField = new CustomInput();
         infoVehiculo.add(marcaField);
 
         infoVehiculo.add(new CustomText("Capacidad:"));
-        capacidadField = new JTextField();
+        capacidadField = new CustomInput();
         infoVehiculo.add(capacidadField);
 
         c.add(infoVehiculo);
@@ -61,17 +61,17 @@ public class FormNuevaOferta extends JFrame {
         infoOferta.setLayout(new GridLayout(3, 2, 10, 10));
 
         infoOferta.add(new CustomText("Fecha:", Color.WHITE));
-        fechaField = new JTextField();
+        fechaField = new CustomInput();
         fechaField.setBackground(Color.WHITE);
         infoOferta.add(fechaField);
 
         infoOferta.add(new CustomText("Horario:", Color.WHITE));
-        horarioField = new JTextField();
+        horarioField = new CustomInput();
         horarioField.setBackground(Color.WHITE);
         infoOferta.add(horarioField);
 
         infoOferta.add(new CustomText("Destino:", Color.WHITE));
-        destinoField = new JTextField();
+        destinoField = new CustomInput();
         destinoField.setBackground(Color.WHITE);
         infoOferta.add(destinoField);
 
@@ -148,14 +148,10 @@ class CustomText extends JLabel {
 class CustomInput extends JTextField {
 
 
-    public CustomInput(String text, int size) {
-        setText(text);
-        setFont(new Font(Font.SANS_SERIF, Font.PLAIN, size));
+    public CustomInput() {
+        setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
     }
 
-    public CustomInput(String text) {
-        this(text, 18);
-    }
 }
 
 
