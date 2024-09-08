@@ -25,7 +25,10 @@ public class FormOferta extends JFrame {
         panelOferta.setBackground(Color.cyan);
 
         var absolute = new JPanel(null);
-        var button = new JButton("+");
+
+        JButton button;
+        button = new RoundedButtonAgregar("+", 100);
+
         button.setBounds(450, 800, 50, 50);
         absolute.add(button);
 
@@ -58,5 +61,32 @@ public class FormOferta extends JFrame {
 
         add(scroll);
 
+    }
+}
+
+class RoundedButtonAgregar extends JButton {
+    private int radius;
+
+    public RoundedButtonAgregar(String text, int radius) {
+        super(text);
+        this.radius = radius;
+        setContentAreaFilled(false); // Evita el fondo por defecto
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setColor(getBackground());
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius); // Fondo redondeado
+        super.paintComponent(g2);
+        g2.dispose();
+    }
+
+    @Override
+    protected void paintBorder(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setColor(getForeground());
+        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radius, radius); // Borde redondeado
+        g2.dispose();
     }
 }
