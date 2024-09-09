@@ -10,6 +10,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class SQLManager {
+
     @Language("postgresql")
     private static final String CREATE_TABLE_OFERTA = """
     CREATE TABLE IF NOT EXISTS oferta (

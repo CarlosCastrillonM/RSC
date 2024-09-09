@@ -7,7 +7,6 @@ import model.Guardable;
 import repo.SQLManager;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Oferta implements Guardable {

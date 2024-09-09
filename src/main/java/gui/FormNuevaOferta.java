@@ -1,5 +1,8 @@
 package gui;
 
+import datos.Oferta;
+import repo.Ofertas;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -8,6 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.concurrent.CompletableFuture;
 
 public class FormNuevaOferta extends JFrame {
 
@@ -113,19 +119,28 @@ public class FormNuevaOferta extends JFrame {
                 String tipo = tipoVehiculo.getSelectedItem().toString();
                 String marca = marcaField.getText();
                 int capacidad = Integer.parseInt(capacidadField.getText());
-                String fecha = fechaField.getText();
-                String horario = horarioField.getText();
+                LocalDate fecha = LocalDate.parse(fechaField.getText());
+                LocalTime horario = LocalTime.parse(horarioField.getText());
                 String destino = destinoField.getText();
 
                 // Aquí puedes procesar los datos o guardarlos según sea necesario
-                JOptionPane.showMessageDialog(null, "Oferta creada:\n" +
+                JOptionPane.showMessageDialog(btnCrear, "Oferta creada:\n" +
                         "Tipo: " + tipo + "\n" +
                         "Marca: " + marca + "\n" +
                         "Capacidad: " + capacidad + "\n" +
                         "Fecha: " + fecha + "\n" +
                         "Horario: " + horario + "\n" +
                         "Destino: " + destino);
+
+                Ofertas of = new Ofertas();
+                of.crearOferta(tipo, marca, capacidad, fecha, horario, destino);
+
+
+
             }
+
+
+
         });
 
     }
