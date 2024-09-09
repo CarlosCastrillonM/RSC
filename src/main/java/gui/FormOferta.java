@@ -20,6 +20,7 @@ public class FormOferta extends JFrame {
 
         this.setTitle("Ofertas");
         this.setBounds(700, 100, 545, 900);
+        this.setResizable(false);
         this.setBackground(Color.BLACK);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

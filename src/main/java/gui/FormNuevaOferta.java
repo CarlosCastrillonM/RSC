@@ -38,7 +38,7 @@ public class FormNuevaOferta extends JFrame {
         // Configuración de la ventana
         setResizable(false);
         setTitle("Agregar nueva oferta");
-        setSize(600, 900);
+        setBounds(700, 100, 600, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBackground(new Color(255, 255, 255));
 
