@@ -11,8 +11,8 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class SQLManager {
     @Language("postgresql")
-    private static final String CREATE_TABLE_TRANSPORTE = """
-    CREATE TABLE IF NOT EXISTS transporte (
+    private static final String CREATE_TABLE_OFERTA = """
+    CREATE TABLE IF NOT EXISTS oferta (
         id SERIAL PRIMARY KEY,          -- Identificador único con auto-incremento
         tipo_transporte VARCHAR(50) NOT NULL, -- Tipo de transporte, tamaño ajustable según necesidades
         marca VARCHAR(50) NOT NULL,     -- Marca del transporte
@@ -51,7 +51,7 @@ public class SQLManager {
     public static void createTables() {
         try {
             Statement st = conn.createStatement();
-//            st.execute(CREATE_TABLE_APTITUDES);
+            st.execute(CREATE_TABLE_OFERTA);
 //            st.execute(CREATE_TABLE_CUENTA);
 //            st.execute(CREATE_TABLE_);
 //            st.execute(CREATE_TABLE_A);

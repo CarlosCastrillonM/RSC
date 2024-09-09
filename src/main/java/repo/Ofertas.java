@@ -17,14 +17,14 @@ public class Ofertas extends AbstractRepositorio<Oferta> {
         return Oferta.class;
     }
 
-    public CompletableFuture<Oferta> crearOferta(String tipoTransporte, String marca, int capacidad, LocalDate fecha, LocalTime horario, String destino) {
+    public CompletableFuture<Oferta> crearOferta(String tipo_transporte, String marca, int capacidad, LocalDate fecha, LocalTime horario, String destino) {
         return SQLManager.executeQuery("""
                 INSERT INTO oferta (tipo_transporte, marca, capacidad, fecha, horario, destino)
-                VALUES (?, ?, ?, ?, ?, ?) RETURNING id_oferta""", tipoTransporte, marca, capacidad, fecha, horario, destino)
+                VALUES (?, ?, ?, ?, ?, ?) RETURNING id""", tipo_transporte, marca, capacidad, fecha, horario, destino)
                 .thenApply(id -> {
                     try {
                         id.next();
-                        return new Oferta(id.getInt(1), tipoTransporte, marca, capacidad, fecha, horario, destino);
+                        return new Oferta(id.getInt(1), tipo_transporte, marca, capacidad, fecha, horario, destino);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }

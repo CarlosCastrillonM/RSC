@@ -31,6 +31,8 @@ public class Main {
                 //new FormOferta().setVisible(true);
                 FormOferta fo = new FormOferta();
                 fo.setVisible(true);
+
+
             }
         });
     }

@@ -6,6 +6,4 @@ public final class Repositorios {
 
     public static final Ofertas OFERTAS = new Ofertas();
 
-
-//    public static final Aptitudes APTITUDES = new Aptitudes();
 }
