@@ -1,6 +1,9 @@
 package gui;
 
+import repo.Repositorios;
+
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.colorchooser.ColorSelectionModel;
 import java.awt.*;
 import java.awt.event.*;
@@ -15,16 +18,22 @@ public class FormOferta extends JFrame {
     private Integer i = 0;
 
     public FormOferta() {
-        panelOferta = new JPanel();
-        panelOferta.setLayout(new GridLayout(0, 1, 0, 0));
-
         this.setTitle("Ofertas");
         this.setBounds(700, 100, 545, 900);
         this.setResizable(false);
         this.setBackground(Color.BLACK);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        panelOferta.setBackground(Color.cyan);
+        panelOferta = new JPanel();
+        panelOferta.setLayout(new GridLayout(0, 1, 0, 20));
+        panelOferta.setBorder(new EmptyBorder(20, 20, 20 ,20));
+        panelOferta.setBackground(Color.white);
+
+        // Mostrar ofertas guardadas
+        var ofertas = Repositorios.OFERTAS.getAll();
+        for (var oferta : ofertas) {
+            panelOferta.add(new CartaOferta(oferta));
+        }
 
         var absolute = new JPanel(null);
 
@@ -35,7 +44,6 @@ public class FormOferta extends JFrame {
         button.setForeground(new Color(255, 255, 255));
 
         button.setBounds(450, 800, 50, 50);
-        absolute.add(button);
 
         button.addActionListener(e -> {
 
@@ -45,22 +53,20 @@ public class FormOferta extends JFrame {
             formNuevaO.setVisible(true);
             this.dispose();
 
-
-
             var panelPr = new JPanel();
             panelPr.setLayout(new BorderLayout());
             panelPr.add(new JLabel("Hello world"));
             panelPr.setBackground(i % 2 == 0 ? Color.BLUE : Color.PINK);
             //panelPr.setPreferredSize(new Dimension(100, 125));
 
-            Dimension fixedSize = new Dimension(100, 125);
-            panelPr.setPreferredSize(fixedSize);
-            panelPr.setMinimumSize(fixedSize);
-            panelPr.setMaximumSize(fixedSize);
+//            Dimension fixedSize = new Dimension(100, 125);
+//            panelPr.setPreferredSize(fixedSize);
+//            panelPr.setMinimumSize(fixedSize);
+//            panelPr.setMaximumSize(fixedSize);
 
-            panelOferta.add(panelPr);
-            panelOferta.revalidate();
-            panelOferta.repaint();
+//            panelOferta.add(panelPr);
+//            panelOferta.revalidate();
+//            panelOferta.repaint();
             i++;
         });
         var wrap = new JPanel();
@@ -80,7 +86,6 @@ public class FormOferta extends JFrame {
         });
 
         add(scroll);
-
     }
 }
 
