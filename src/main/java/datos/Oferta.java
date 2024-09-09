@@ -85,4 +85,17 @@ public class Oferta implements Guardable {
             WHERE id = ?
             """, tipo_transporte, marca, id);
     }
+
+    @Override
+    public String toString() {
+        return "Oferta{" +
+                "id=" + id +
+                ", tipo_transporte='" + tipo_transporte + '\'' +
+                ", marca='" + marca + '\'' +
+                ", capacidad=" + capacidad +
+                ", fecha=" + fecha +
+                ", horario=" + horario +
+                ", destino='" + destino + '\'' +
+                '}';
+    }
 }
